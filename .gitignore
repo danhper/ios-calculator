@@ -1,0 +1,6 @@
+build/
+.DS_STORE
+**/*.pbxuser
+*.mode2v3
+*.mode1v3
+**/*.perspectiveev*
