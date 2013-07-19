@@ -67,6 +67,11 @@
 - (NSObject<Value>*) div:(NSObject<Value> *)other
 {
     if([other getType] == INT_VALUE) {
+        if([(IntValue*)other value] == 0) {
+            @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                               reason:[NSString stringWithFormat:@"div by 0"]
+                                             userInfo:nil];
+        }
         return [[IntValue alloc] initWithValue: [self value] / [(IntValue*)other value]];
     } else {
         return [[DoubleValue alloc] initWithValue:[self value] / [other getDoubleValue]];
@@ -139,7 +144,7 @@
     }
     return [[DoubleValue alloc] initWithValue:newValue];
 }
-        
+
 
 @end
 
