@@ -10,6 +10,9 @@
 
 #import "Math.h"
 
+#define PI 3.14159265359
+#define E 2.718281828459
+
 
 @implementation IntValue
 
@@ -137,6 +140,40 @@
     return [[DoubleValue alloc] initWithValue:newValue];
 }
         
+
+@end
+
+@implementation Variable
+static NSMutableDictionary *dictionary = nil;
+
++ (void)initVariables
+{
+    if(dictionary != nil) {
+        return;
+    }
+    dictionary = [[NSMutableDictionary alloc] init];
+    DoubleValue* pi = [[DoubleValue alloc] initWithValue:PI];
+    DoubleValue* e = [[DoubleValue alloc] initWithValue:E];
+    [dictionary setObject:pi forKey:@"π"];
+    [dictionary setObject:e forKey:@"e"];
+}
+
+- (id)initWithName:(NSString*)n
+{
+    name = n;
+    return self;
+}
+
+- (NSObject<Value> *)evaluate
+{
+    NSObject<Value>* value = [dictionary objectForKey:name];
+    if(value == nil) {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:[NSString stringWithFormat:@"variable %@ not found", name]
+                                     userInfo:nil];
+    }
+    return value;
+}
 
 @end
 

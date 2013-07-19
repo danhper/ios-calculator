@@ -30,8 +30,10 @@ typedef enum {
 @end
 
 @interface SymbToken : NSObject <Token>
-@property (readonly) char value;
-- (id)initWithValue: (char)value;
+@property (readonly) NSString* value;
+- (id)initWithValue: (NSString*)value;
+- (BOOL)eqChar: (char)value;
+- (BOOL)eqString: (NSString*) value;
 @end
 
 @interface IdentToken : NSObject <Token>
@@ -49,6 +51,7 @@ typedef enum {
 - (id) initWithString:(NSString*)string;
 - (id<Token>) nextToken;
 - (id<Token>) currentToken;
+- (id<Token>) eatToken;
 
 @end
 

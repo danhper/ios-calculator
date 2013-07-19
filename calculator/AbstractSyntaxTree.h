@@ -47,6 +47,13 @@ typedef enum {
 - (id)initWithValue:(double)v;
 @end
 
+@interface Variable : NSObject<AbstractSyntaxTree> {
+    @protected NSString* name;
+}
++ (void)initVariables;
+- (id)initWithName:(NSString*)n;
+@end
+
 @interface UnaryApp : NSObject<AbstractSyntaxTree> {
     @protected UnaryAppType type;
     @protected NSObject<AbstractSyntaxTree>* elem;

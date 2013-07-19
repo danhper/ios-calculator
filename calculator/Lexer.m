@@ -39,7 +39,7 @@
 
 @implementation SymbToken
 
-- (id)initWithValue:(char)value
+- (id)initWithValue:(NSString*)value
 {
     _value = value;
     return self;
@@ -48,6 +48,16 @@
 - (TokenType) getType
 {
     return SymbTok;
+}
+
+- (BOOL)eqChar: (char)val
+{
+    return [[self value] isEqualToString:[NSString stringWithFormat:@"%c", val]];
+}
+
+- (BOOL)eqString: (NSString*) val
+{
+    return [[self value] isEqualToString:val];
 }
 
 @end
@@ -71,10 +81,11 @@
 
 - (id) initWithString:(NSString *)str
 {
-    buffer = malloc([str length] * sizeof(char));
-    strncpy(buffer, [str UTF8String], [str length]);
-    maxPosition = [str length];
+    buffer = malloc([str lengthOfBytesUsingEncoding:NSUTF8StringEncoding] * sizeof(char));
+    strncpy(buffer, [str UTF8String], [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+    maxPosition = [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     position = 0;
+    [self nextToken];
     return self;
 }
 
@@ -96,6 +107,9 @@
 
 - (id<Token>) nextToken
 {
+    while([self peek] == ' ' || [self peek] == '\t') {
+        [self advance];
+    }
     if([self isNumber:[self peek]]) {
         _currentToken = [self getNumToken];
     } else if([self isChar:[self peek]]) {
@@ -109,6 +123,13 @@
 - (id<Token>) currentToken
 {
     return _currentToken;
+}
+
+- (id<Token>) eatToken
+{
+    id<Token> tok = [self currentToken];
+    [self nextToken];
+    return tok;
 }
 
 - (BOOL) isNumber:(int)c
@@ -147,7 +168,15 @@
 
 - (id<Token>) getSymbToken
 {
-    id<Token> token = [[SymbToken alloc] initWithValue:[self peek]];
+    if([self peek] == -49) {
+        char c = [self next];
+        if(c == -128) {
+            [self advance];
+            return [[SymbToken alloc] initWithValue:@"π"];
+        }
+    }
+    NSString* value = [NSString stringWithFormat:@"%c", [self peek]];
+    id<Token> token = [[SymbToken alloc] initWithValue:value];
     [self advance];
     return token;
 }
@@ -162,5 +191,6 @@
     }
     return [[RealToken alloc] initWithValue:(value + floatingVal)];
 }
+
 
 @end
