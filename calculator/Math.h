@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#define PI 3.14159265359
+#define E 2.718281828459
+
+
 @interface Math : NSObject
 + (long)factorial:(int)value;
 + (double)pow:(double)x :(double)n;

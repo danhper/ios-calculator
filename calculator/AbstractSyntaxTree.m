@@ -10,8 +10,6 @@
 
 #import "Math.h"
 
-#define PI 3.14159265359
-#define E 2.718281828459
 
 
 @implementation IntValue
