@@ -16,4 +16,8 @@
 
 -(IBAction)evaluateResult:(id)sender;
 
+-(IBAction)removeLastCharacter:(id)sender;
+
+-(IBAction)clearText:(id)sender;
+
 @end

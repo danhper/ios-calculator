@@ -28,16 +28,28 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)updateText:(id)sender {
+-(IBAction)updateText:(id)sender
+{
     NSString *newText = [[[self textField] text] stringByAppendingString:[sender currentTitle]];
     self.textField.text = newText;
 }
 
--(IBAction)clearText:(id)sender {
+-(IBAction)clearText:(id)sender
+{
     [self textField].text = @"";
 }
 
--(IBAction)evaluateResult:(id)sender {
+-(IBAction)removeLastCharacter:(id)sender
+{
+    NSString* str = [[self textField] text];
+    if([str length] == 0) {
+        return;
+    }
+    [self textField].text = [str substringToIndex:[str length] - 1];
+}
+
+-(IBAction)evaluateResult:(id)sender
+{
     NSString* text = [[self textField] text];
     if([[[self textField] text] length] == 0) {
         return;
@@ -59,5 +71,6 @@
         }
     }
 }
+
 
 @end
