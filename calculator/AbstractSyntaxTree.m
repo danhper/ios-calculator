@@ -209,6 +209,12 @@ static NSMutableDictionary *dictionary = nil;
         }
         case SQRT:
             return [[DoubleValue alloc] initWithValue:[Math pow:[[elem evaluate] getDoubleValue] :0.5]];
+        case COS:
+            return [[DoubleValue alloc] initWithValue:[Math cos:[[elem evaluate] getDoubleValue]]];
+        case SIN:
+            return [[DoubleValue alloc] initWithValue:[Math sin:[[elem evaluate] getDoubleValue]]];
+        case TAN:
+            return [[DoubleValue alloc] initWithValue:[Math tan:[[elem evaluate] getDoubleValue]]];
             
         default:
             break;

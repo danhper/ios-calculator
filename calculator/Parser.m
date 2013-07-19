@@ -144,7 +144,7 @@
         return TAN;
     } else if([str isEqualToString:@"cos"]) {
         return COS;
-    } else if([str isEqualToString:@"cos"]) {
+    } else if([str isEqualToString:@"sin"]) {
         return SIN;
     } else if([str isEqualToString:@"ln"]) {
         return LN;

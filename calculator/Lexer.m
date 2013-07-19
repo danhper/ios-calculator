@@ -169,11 +169,15 @@
 - (id<Token>) getSymbToken
 {
     if([self peek] == -49) {
-        char c = [self next];
-        if(c == -128) {
-            [self advance];
-            return [[SymbToken alloc] initWithValue:@"π"];
-        }
+        [self advance];
+        [self advance];
+        return [[SymbToken alloc] initWithValue:@"π"];
+    }
+    if([self peek] == -30) {
+        [self advance];
+        [self advance];
+        [self advance];
+        return [[SymbToken alloc] initWithValue:@"√"];
     }
     NSString* value = [NSString stringWithFormat:@"%c", [self peek]];
     id<Token> token = [[SymbToken alloc] initWithValue:value];

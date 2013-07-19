@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65C4CFAA17977D3B001A8222 /* Lexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C4CFA917977D3A001A8222 /* Lexer.m */; };
+		65CFA2651798E48800D6F4DE /* AbstractSyntaxTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CFA2641798E48800D6F4DE /* AbstractSyntaxTree.m */; };
+		65CFA26A1798E49C00D6F4DE /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CFA2671798E49C00D6F4DE /* Math.m */; };
+		65CFA26B1798E49C00D6F4DE /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CFA2691798E49C00D6F4DE /* Parser.m */; };
 		65D9FF5F1792F6470090D6F7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D9FF5E1792F6470090D6F7 /* UIKit.framework */; };
 		65D9FF611792F6470090D6F7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D9FF601792F6470090D6F7 /* Foundation.framework */; };
 		65D9FF631792F6470090D6F7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D9FF621792F6470090D6F7 /* CoreGraphics.framework */; };
@@ -37,6 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65C4CFA817977D3A001A8222 /* Lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lexer.h; sourceTree = "<group>"; };
+		65C4CFA917977D3A001A8222 /* Lexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lexer.m; sourceTree = "<group>"; };
+		65CFA2631798E48800D6F4DE /* AbstractSyntaxTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSyntaxTree.h; sourceTree = "<group>"; };
+		65CFA2641798E48800D6F4DE /* AbstractSyntaxTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSyntaxTree.m; sourceTree = "<group>"; };
+		65CFA2661798E49C00D6F4DE /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		65CFA2671798E49C00D6F4DE /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
+		65CFA2681798E49C00D6F4DE /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
+		65CFA2691798E49C00D6F4DE /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
 		65D9FF5B1792F6470090D6F7 /* calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D9FF5E1792F6470090D6F7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		65D9FF601792F6470090D6F7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,6 +98,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65CFA26C1798E4B500D6F4DE /* util */ = {
+			isa = PBXGroup;
+			children = (
+				65C4CFA817977D3A001A8222 /* Lexer.h */,
+				65C4CFA917977D3A001A8222 /* Lexer.m */,
+				65CFA2661798E49C00D6F4DE /* Math.h */,
+				65CFA2671798E49C00D6F4DE /* Math.m */,
+				65CFA2681798E49C00D6F4DE /* Parser.h */,
+				65CFA2691798E49C00D6F4DE /* Parser.m */,
+				65CFA2631798E48800D6F4DE /* AbstractSyntaxTree.h */,
+				65CFA2641798E48800D6F4DE /* AbstractSyntaxTree.m */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 		65D9FF521792F6460090D6F7 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +146,7 @@
 		65D9FF641792F6470090D6F7 /* calculator */ = {
 			isa = PBXGroup;
 			children = (
+				65CFA26C1798E4B500D6F4DE /* util */,
 				65D9FF6D1792F6470090D6F7 /* AppDelegate.h */,
 				65D9FF6E1792F6470090D6F7 /* AppDelegate.m */,
 				65D9FF761792F6470090D6F7 /* MainStoryboard_iPhone.storyboard */,
@@ -277,6 +305,10 @@
 				65D9FF6B1792F6470090D6F7 /* main.m in Sources */,
 				65D9FF6F1792F6470090D6F7 /* AppDelegate.m in Sources */,
 				65D9FF7E1792F6470090D6F7 /* ViewController.m in Sources */,
+				65C4CFAA17977D3B001A8222 /* Lexer.m in Sources */,
+				65CFA2651798E48800D6F4DE /* AbstractSyntaxTree.m in Sources */,
+				65CFA26A1798E49C00D6F4DE /* Math.m in Sources */,
+				65CFA26B1798E49C00D6F4DE /* Parser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +499,7 @@
 				65D9FF981792F6470090D6F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65D9FF991792F6470090D6F7 /* Build configuration list for PBXNativeTarget "calculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +508,7 @@
 				65D9FF9B1792F6470090D6F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

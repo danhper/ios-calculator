@@ -66,4 +66,34 @@
     return result;
 }
 
++ (double)sin:(double) x
+{
+    double result = 0;
+    for(int n = 0; n < 10; n++) {
+        int sign = n % 2 == 0 ? 1 : -1;
+        double f = [Math factorial:2 * n + 1];
+        double ex = [Math doubleIntPow:x :2 * n + 1];
+        result += sign * ex / f;
+    }
+    return result;
+}
+
+
++ (double)cos:(double) x
+{
+    double result = 0;
+    for(int n = 0; n < 10; n++) {
+        int sign = n % 2 == 0 ? 1 : -1;
+        double f = [Math factorial:2 * n];
+        double ex = [Math doubleIntPow:x :2 * n];
+        result += sign * ex / f;
+    }
+    return result;
+}
+
++ (double)tan:(double) x
+{
+    return [Math sin:x] / [Math cos:x];
+}
+
 @end
