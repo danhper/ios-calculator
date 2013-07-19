@@ -14,5 +14,6 @@
 + (long)intPow:(long)x :(int)n;
 + (double)doubleIntPow:(double)x :(int)n;
 + (double)log:(double) x;
++ (double)log10:(double) x;
 + (double)exp:(double) x;
 @end

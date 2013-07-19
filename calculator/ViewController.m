@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "Parser.h"
+#import "AbstractSyntaxTree.h"
 
 @interface ViewController ()
 
@@ -27,13 +29,35 @@
 }
 
 -(IBAction)updateText:(id)sender {
-    NSLog(@"received event with text: %@", [sender currentTitle]);
-    NSString *newText = [self.textField.text stringByAppendingString:[sender currentTitle]];
+    NSString *newText = [[[self textField] text] stringByAppendingString:[sender currentTitle]];
     self.textField.text = newText;
 }
 
+-(IBAction)clearText:(id)sender {
+    [self textField].text = @"";
+}
+
 -(IBAction)evaluateResult:(id)sender {
-    
+    NSString* text = [[self textField] text];
+    if([[[self textField] text] length] == 0) {
+        return;
+    }
+    @autoreleasepool {
+        @try {
+            Lexer* lexer = [[Lexer alloc] initWithString: text];
+            Parser* parser = [[Parser alloc] initWithLexer:lexer];
+            NSObject<AbstractSyntaxTree>* tree = [parser run];
+            NSObject<Value>* result = [tree evaluate];
+            if([result getType] == INT_VALUE) {
+                [self textField].text = [NSString stringWithFormat:@"%ld", [(IntValue*)result value]];
+            } else {
+                [self textField].text = [NSString stringWithFormat:@"%g", [result getDoubleValue]];
+            }
+        }
+        @catch (NSException *exception) {
+            [self textField].text = @"error";
+        }
+    }
 }
 
 @end

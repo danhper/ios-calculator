@@ -79,8 +79,8 @@
         long newValue = [Math intPow:[self value] :(int)[(IntValue*)other value]];
         return [[IntValue alloc] initWithValue: newValue];
     } else {
-        long newValue = [Math pow:[self value] :[other getDoubleValue]];
-        return [[IntValue alloc] initWithValue: newValue];
+        double newValue = [Math pow:[self value] :[other getDoubleValue]];
+        return [[DoubleValue alloc] initWithValue: newValue];
     }
 }
 
@@ -179,17 +179,40 @@ static NSMutableDictionary *dictionary = nil;
 
 @implementation UnaryApp
 
-- (id)initWithValues:(UnaryAppType)type :(NSObject<AbstractSyntaxTree>*)e
+- (id)initWithValues:(UnaryAppType)t :(NSObject<AbstractSyntaxTree>*)e
 {
     elem = e;
+    type = t;
     return self;
 }
 
 - (NSObject<Value>*)evaluate
 {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
+    switch (type) {
+        case FACT: {
+            NSObject<Value>* v = [elem evaluate];
+            if([v getType] != INT_VALUE) {
+                @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                               reason:[NSString stringWithFormat:@"need int for factorial"]
+                                             userInfo:nil];
+            }
+            return [[IntValue alloc] initWithValue: [Math factorial:[(IntValue*)v value]]];
+            break;
+        }
+        case LN: {
+            NSObject<Value>* v = [elem evaluate];
+            return [[DoubleValue alloc] initWithValue:[Math log:[v getDoubleValue]]];
+        }
+        case LOG: {
+            NSObject<Value>* v = [elem evaluate];
+            return [[DoubleValue alloc] initWithValue:[Math log10:[v getDoubleValue]]];
+        }
+        case SQRT:
+            return [[DoubleValue alloc] initWithValue:[Math pow:[[elem evaluate] getDoubleValue] :0.5]];
+            
+        default:
+            break;
+    }
 }
 @end
 

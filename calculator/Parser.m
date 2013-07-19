@@ -73,7 +73,6 @@
 - (NSObject<AbstractSyntaxTree>*)parseAtom
 {
     NSObject<Token>* token = [lexer eatToken];
-    //NSObject<Token>* nextToken = [lexer nextToken];
     NSObject<AbstractSyntaxTree>* tree = nil;
     switch ([token getType]) {
         case IntTok:
@@ -86,10 +85,17 @@
             tree = [self parseSymbAtom:(SymbToken*)token];
             break;
         case IdentTok:
-//            tree = [self parseIdentAtom:token :nextToken];
+            tree = [self parseIdentAtom:token];
             break;
         default:
             break;
+    }
+    
+    NSObject<Token>* nextToken = [lexer currentToken];
+    
+    if([nextToken getType] == SymbTok && [(SymbToken*)nextToken eqChar:'!']) {
+        [lexer eatToken];
+        tree = [[UnaryApp alloc] initWithValues:FACT :tree];
     }
         
     return tree;
@@ -140,6 +146,10 @@
         return COS;
     } else if([str isEqualToString:@"cos"]) {
         return SIN;
+    } else if([str isEqualToString:@"ln"]) {
+        return LN;
+    } else if([str isEqualToString:@"log"]) {
+        return LOG;
     } else {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:[NSString stringWithFormat :@"unknown function %@", str]

@@ -7,11 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "AbstractSyntaxTree.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Variable initVariables];
     // Override point for customization after application launch.
     return YES;
 }

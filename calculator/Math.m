@@ -52,11 +52,16 @@
     return result * 2;
 }
 
++ (double)log10:(double) x
+{
+    return [Math log:x] / [Math log: 10.0];
+}
+
 + (double)exp:(double) x
 {
     double result = 0;
     for(int n = 0; n < 20; n++) {
-        result += [Math doubleIntPow:x :n] / (double)[Math factorial:n];
+        result += [Math doubleIntPow:x :n] / [Math factorial:n];
     }
     return result;
 }

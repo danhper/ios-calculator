@@ -14,7 +14,7 @@ typedef enum {
 } ValueType;
 
 typedef enum {
-    FACT, COS, SIN, TAN, SQRT
+    FACT, COS, SIN, TAN, SQRT, LN, LOG
 } UnaryAppType;
 
 typedef enum {
