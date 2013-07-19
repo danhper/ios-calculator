@@ -10,22 +10,17 @@
 #import "Parser.h"
 #import "AbstractSyntaxTree.h"
 
-@interface ViewController ()
-
-@end
 
 @implementation ViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(IBAction)updateText:(id)sender
@@ -70,6 +65,11 @@
             [self textField].text = @"error";
         }
     }
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return NO;
 }
 
 
